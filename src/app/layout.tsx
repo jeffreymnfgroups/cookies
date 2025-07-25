@@ -1,50 +1,52 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/luxury/Navbar";
+import Footer from "@/components/luxury/Footer";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfair = Playfair_Display({
+  variable: "--font-luxury",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-modern",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const metadataBase =
   process.env.NODE_ENV === "development"
     ? new URL("http://localhost:3000")
-    : new URL("https://www.roseandsugar.com");
+    : new URL("https://www.luxuryketocookies.com");
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase,
     title:
-      "Beautiful Custom Cookies in Folsom | Rose & Sugar Handcrafted Designs",
+      "Luxury KETO Cookie Subscriptions | Premium Artisan Cookies Delivered",
     description:
-      "Order custom sugar cookies in Folsom, CA for birthdays, showers, and celebrations. Handcrafted by Rose & Sugar with love and local flair.",
+      "Indulge in our exclusive KETO cookie subscription boxes. Premium artisan cookies crafted with the finest ingredients, delivered monthly in limited drops.",
     alternates: {
-      canonical: "https://www.roseandsugar.com",
+      canonical: "https://www.luxuryketocookies.com",
     },
     openGraph: {
-      title: "Handcrafted Custom Cookies in Folsom, CA | Rose & Sugar",
+      title: "Luxury KETO Cookie Subscriptions | Premium Artisan Cookies",
       description:
-        "Celebrate with custom cookies that are as beautiful as they are delicious. Serving Folsom, El Dorado Hills, Placerville, and nearby areas.",
-      url: "https://www.roseandsugar.com",
-      siteName: "Rose & Sugar",
+        "Experience the ultimate indulgence with our curated KETO cookie subscription boxes. Limited monthly drops featuring White Chocolate Macadamia, Stuffed Red Velvet, and Thin Mint.",
+      url: "https://www.luxuryketocookies.com",
+      siteName: "Luxury KETO Cookies",
       type: "website",
-      images: ["/singleCookie.webp"],
+      images: ["/luxury-cookies-hero.jpg"],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rose & Sugar | Custom Sugar Cookies for All Occasions",
+      title: "Luxury KETO Cookies | Premium Subscription Boxes",
       description:
-        "Order personalized, handcrafted sugar cookies made with love in Folsom, CA. Perfect for parties, showers, and gifts.",
-      images: ["https://www.roseandsugar.com/singleCookie.webp"],
+        "Indulge in our exclusive KETO cookie subscription boxes with premium artisan cookies delivered monthly.",
+      images: ["https://www.luxuryketocookies.com/luxury-cookies-hero.jpg"],
     },
   };
 }
@@ -52,61 +54,23 @@ export async function generateMetadata(): Promise<Metadata> {
 function getJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://www.roseandsugar.com/#localbusiness",
-    name: "Rose & Sugar",
-    url: "https://www.roseandsugar.com",
-    email: "megan@roseandsugar.com",
-    telephone: "+1-555-123-4567",
-    serviceType: ["Custom Cookies", "Cookie Decorating Classes"],
+    "@type": "Organization",
+    "@id": "https://www.luxuryketocookies.com/#organization",
+    name: "Luxury KETO Cookies",
+    url: "https://www.luxuryketocookies.com",
+    email: "hello@luxuryketocookies.com",
+    serviceType: ["KETO Cookie Subscriptions", "Premium Artisan Cookies"],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-555-123-4567",
       contactType: "Customer Support",
       areaServed: ["US"],
       availableLanguage: ["English"],
     },
-    hasMap: "https://www.google.com/maps/place/Folsom,+CA",
-    founder: {
-      "@type": "Person",
-      name: "Megan Guerra",
-      url: "https://www.roseandsugar.com",
-    },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Folsom",
-      addressRegion: "CA",
-      postalCode: "95630",
-      addressCountry: "US",
-    },
-    areaServed: [
-      { "@type": "Place", name: "Folsom" },
-      { "@type": "Place", name: "El Dorado Hills" },
-      { "@type": "Place", name: "Placerville" },
-      { "@type": "Place", name: "Cameron Park" },
-      { "@type": "Place", name: "Tahoe" },
-    ],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: "00:00",
-        closes: "23:59",
-      },
-    ],
     description:
-      "Rose & Sugar creates handcrafted custom cookies in Folsom, CA for birthdays, showers, holidays, and events. Every cookie is a piece of edible art.",
-    sameAs: ["https://instagram.com/roseandsugar"],
-    image: "https://www.roseandsugar.com/assets/rose-and-sugar-logo.webp",
-    priceRange: "$$",
+      "Luxury KETO Cookies offers premium artisan cookie subscription boxes with limited monthly drops featuring the finest KETO-friendly ingredients.",
+    sameAs: ["https://instagram.com/luxuryketocookies"],
+    image: "https://www.luxuryketocookies.com/luxury-cookies-logo.png",
+    priceRange: "$$$",
   };
 }
 
@@ -119,10 +83,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${playfair.variable} ${inter.variable} antialiased`}
       >
         <Script
-          id="localbusiness-jsonld"
+          id="organization-jsonld"
           type="application/ld+json"
           strategy="beforeInteractive" // ← KEY: SSR-compatible
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
